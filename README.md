@@ -10,4 +10,4 @@ bbs project
   - java 11 
   - mysql
   - lombok
-  - tymleaf
+  - thymeleaf
