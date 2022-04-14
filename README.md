@@ -8,3 +8,6 @@ bbs project
   - spring boot
   - mybatis
   - java 11 
+  - mysql
+  - lombok
+  - tymleaf
