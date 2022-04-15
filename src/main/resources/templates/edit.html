@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>홈페이지</title>
+</head>
+<body>
+  <form th:action="@{'/board/edit/' + ${bno}}" method="post" th:object="${board}">
+    <div>
+      <label for="">제목</label>
+      <input type="text" th:field="*{title}" required value="${title}"/>
+    </div>
+    <div>
+      <label for="">내용</label>
+      <textarea th:field="*{content}" cols="30" rows="5" placeholder="내용을 입력해 주세요" spellcheck="false" th:text="${content}" required></textarea>
+    </div>
+    <div>
+      <label for="">작성자</label>
+      <input type="text" th:field="*{writer}" vaule="${writer}" required/>
+    </div>
+    <button type="submit">수정</button>
+  </form>
+</body>
+</html>

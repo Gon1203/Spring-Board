@@ -1,6 +1,6 @@
 package com.myapp.board.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -15,9 +15,9 @@ public class Board {
 	
 	private String writer;
 	
-	private LocalDate regDate;
+	private LocalDateTime regDate;
 	
-	private LocalDate updateDate;
+	private LocalDateTime updateDate;
 	
 	
 	

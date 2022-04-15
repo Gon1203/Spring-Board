@@ -5,8 +5,28 @@
 
 <mapper namespace="com.myapp.board.mapper.BoardMapper">
 
-	<insert id="enroll">
+	<select id="enroll" resultType="Board">
 		insert into board(title, content, writer)
-		set(#{title}, #{content}, #{writer})
-	</insert>
+		values(#{title}, #{content}, #{writer})
+	</select>
+	
+	<select id="list" resultType="Board">
+		select * from board
+	</select>
+	
+	<select id="getBoardByBno" resultType="Board">
+		select * from board where bno = #{bno}
+	</select>
+	
+	<delete id="deleteByBno">
+		delete from board where bno = #{bno}
+	</delete>
+	
+	<update id="updateBoard">
+		update board 
+		set title = #{title}, content = #{content}, writer = #{writer}, updatedate = #{updateDate}
+		where bno = #{bno}
+	</update>
+	
+	
 </mapper>

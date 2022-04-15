@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>홈페이지</title>
+</head>
+<body>
+  <h2>List page</h2>
+  <a th:href="@{/board/enroll}">등록하기</a>
+
+  <table>
+    <tr>
+      <td>제 목</td>
+      <td>작성자</td>
+      <td>작성일</td>
+      <td>수정일</td>
+      <td>상 태</td>
+    </tr>
+    <tr th:each="board : ${boards}">
+      <td th:text="${board.title}"></td>
+      <td th:text="${board.writer}"></td>
+      <td th:text="${board.regDate}"></td>
+      <td th:text="${board.updateDate}"></td>
+      <td>
+        <a th:href="@{'/board/edit/' + ${board.bno}}">수정</a>
+        <a th:href="@{'/board/delete/' + ${board.bno}}">삭제</a>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
