@@ -23,3 +23,6 @@
 > Mybatis mapper.xml 활용하여 쿼리문 작성
 > 
 > 기본적인 게시물 생성, 리스트 받아오기(테이블), 수정, 삭제 구현 (CRUD)
+
+- 4월 16일
+> Thymeleaf fragments(nav,header) 작성
