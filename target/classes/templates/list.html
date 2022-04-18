@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>홈페이지</title>
+<head th:replace="/fragments/head">
+  
 </head>
 <body>
-  <h2>List page</h2>
-  <a th:href="@{/board/enroll}">등록하기</a>
-
-  <table>
-    <tr>
-      <td>제 목</td>
-      <td>작성자</td>
-      <td>작성일</td>
-      <td>수정일</td>
-      <td>상 태</td>
-    </tr>
-    <tr th:each="board : ${boards}">
-      <td th:text="${board.title}"></td>
-      <td th:text="${board.writer}"></td>
-      <td th:text="${board.regDate}"></td>
-      <td th:text="${board.updateDate}"></td>
-      <td>
-        <a th:href="@{'/board/edit/' + ${board.bno}}">수정</a>
-        <a th:href="@{'/board/delete/' + ${board.bno}}">삭제</a>
-      </td>
-    </tr>
-  </table>
+  <div th:replace="/fragments/nav :: header"></div>
+  <div class="contatiner row justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h2>List page</h2>
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">no</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">title</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">writer</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">등록일</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">수정일</th>
+                <th class="text-secondary opacity-7">기 타</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each=" board  : ${ boards }">
+                <td class="align-middle text-center">
+                  <span class="text-secondary text-xs" th:text="${board.bno}"></span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="text-secondary text-xs" th:text="${board.title}"></span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="text-secondary text-xs" th:text="${board.writer}"></span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="text-secondary text-xs" th:text="${#temporals.format(board.regDate , 'yyyy-MM-dd a hh:mm:ss')}"></span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="text-secondary text-xs" th:text="${#temporals.format(board.updateDate, 'yyyy-MM-dd a hh:mm:ss')}"></span>
+                </td>
+                <td class="align-middle">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <a th:href="@{/board/enroll}" class="btn btn-sm btn-success m-3">등록하기</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
 </body>
 </html>
