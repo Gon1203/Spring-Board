@@ -25,4 +25,9 @@
 > 기본적인 게시물 생성, 리스트 받아오기(테이블), 수정, 삭제 구현 (CRUD)
 
 - 4월 16일
-> Thymeleaf fragments(nav,header) 작성
+> Thymeleaf fragments(nav,head) 작성
+
+- 4월 18일
+> bootstrap 연결, nav, head 파일 부트스트랩 적용
+> 
+> list view page 업데이트
