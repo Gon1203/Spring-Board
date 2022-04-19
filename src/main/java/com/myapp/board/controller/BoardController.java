@@ -1,7 +1,6 @@
 package com.myapp.board.controller;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myapp.board.model.Board;
+import com.myapp.board.model.Criteria;
+import com.myapp.board.model.PageMakerDTO;
 import com.myapp.board.service.BoardService;
 
 import lombok.extern.java.Log;
@@ -34,12 +35,26 @@ public class BoardController {
 		return "enroll";
 	}
 	
+//	@GetMapping("/list")
+//	public String boardEnrollList(Model model) {
+//		
+//		List<Board> list = boardService.list();
+//		
+//		model.addAttribute("boards", list);
+//		
+//		return "list";
+//	}
+	
 	@GetMapping("/list")
-	public String boardEnrollList(Model model) {
+	public String boardList(Criteria cri, Model model) {
 		
-		List<Board> list = boardService.list();
+		model.addAttribute("boards", boardService.pagingList(cri));
 		
-		model.addAttribute("boards", list);
+		int total = boardService.getTotal();
+		
+		PageMakerDTO pmk = new PageMakerDTO(cri, total);
+		
+		model.addAttribute("pmk", pmk);
 		
 		return "list";
 	}

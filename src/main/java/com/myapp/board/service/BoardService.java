@@ -3,6 +3,7 @@ package com.myapp.board.service;
 import java.util.List;
 
 import com.myapp.board.model.Board;
+import com.myapp.board.model.Criteria;
 
 public interface BoardService {
 
@@ -15,5 +16,9 @@ public interface BoardService {
 	public Board getBoardByBno(int bno);
 
 	public void updateBoard(Board board);
+	
+	public List<Board> pagingList(Criteria cri);
+	
+	public int getTotal();
 
 }

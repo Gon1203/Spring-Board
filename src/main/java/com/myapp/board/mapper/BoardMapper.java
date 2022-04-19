@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.myapp.board.model.Board;
+import com.myapp.board.model.Criteria;
 
 @Mapper
 public interface BoardMapper {
@@ -19,5 +20,8 @@ public interface BoardMapper {
 
 	public void updateBoard(Board board);
 
+	public List<Board> pagingList(Criteria cir);
+	
+	public int getTotal();
 
 }

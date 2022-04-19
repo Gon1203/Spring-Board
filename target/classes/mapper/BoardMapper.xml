@@ -14,6 +14,21 @@
 		select * from board
 	</select>
 	
+	<!-- 페이징 처리 리스트 가져오기 -->
+	<select id="pagingList" resultType="Board">
+		select *
+		from (select bno, title, content, writer, regdate, updatedate
+				from board
+				order by bno desc) A
+		limit #{skip}, #{amount}
+	</select>
+	
+	<!-- 전체 게시물 수 조회 -->
+	<select id="getTotal" resultType="int">
+		select count(*)
+		from board
+	</select>
+	
 	<select id="getBoardByBno" resultType="Board">
 		select * from board where bno = #{bno}
 	</select>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.myapp.board.mapper.BoardMapper;
 import com.myapp.board.model.Board;
+import com.myapp.board.model.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -43,6 +44,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void updateBoard(Board board) {
 		boardMapper.updateBoard(board);
+	}
+
+	@Override
+	public List<Board> pagingList(Criteria cri) {
+		return boardMapper.pagingList(cri);
+	}
+
+	@Override
+	public int getTotal() {
+		return boardMapper.getTotal();
 	}
 
 }

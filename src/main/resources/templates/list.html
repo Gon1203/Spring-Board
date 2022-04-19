@@ -45,6 +45,19 @@
             </tbody>
           </table>
           <a th:href="@{/board/enroll}" class="btn btn-sm btn-success m-3">등록하기</a>
+          <nav class="pagination-nav" th:if="${pmk.endPage > 0}">
+            <ul class="pagination">
+              <li class="pagination-item">
+                <a href="#" th:if="${pmk.prev}">이전</a>
+              </li>
+              <li th:each="number : ${#numbers.sequence(pmk.startPage, pmk.endPage)}">
+                <a href="#">1</a>
+              </li>
+              <li class="pagination-item">
+                <a href="#" th:if="${pmk.next}">다음</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
