@@ -31,3 +31,16 @@
 > bootstrap 연결, nav, head 파일 부트스트랩 적용
 > 
 > list view page 업데이트
+
+
+- 4월 19일
+> paging 처리하여 board list 불러오기 작성
+> 
+> pagination 작성 (java)
+>  
+> pagination view 작업중
+> > startPage ~ endPage 까지 페이지 번호 불러오기 완성
+> > 페이지 번호 현재 모두 1로 표시 (추가 작업 필요)
+> > 이전, 이후 버튼 표시 안됨
+
+
