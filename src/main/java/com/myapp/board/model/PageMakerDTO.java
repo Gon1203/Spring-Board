@@ -39,7 +39,7 @@ public class PageMakerDTO {
 		
 		this.prev = this.startPage > 1;
 		
-		this.next = this.endPage > realEndPage;
+		this.next = this.endPage < realEndPage;
 
 	}
 

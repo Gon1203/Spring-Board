@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head">
+<head th:replace="/fragments/head :: fragment-head">
   
 </head>
 <body>
@@ -46,15 +46,15 @@
           </table>
           <a th:href="@{/board/enroll}" class="btn btn-sm btn-success m-3">등록하기</a>
           <nav class="pagination-nav" th:if="${pmk.endPage > 0}">
-            <ul class="pagination">
-              <li class="pagination-item">
-                <a href="#" th:if="${pmk.prev}">이전</a>
+            <ul class="pagination justify-content-center mt-3 pagination-primary">
+              <li class="pagination-item" th:if="${pmk.prev}">
+                <a th:href="@{/board/list} + '?pageNum=__${pmk.startPage - 1}__'">이전</a>
               </li>
-              <li th:each="number : ${#numbers.sequence(pmk.startPage, pmk.endPage)}">
-                <a href="#">1</a>
+              <li class="page-item" th:classappend="${pmk.cri.pageNum == number} ? 'active' : ''" th:each="number : ${#numbers.sequence(pmk.startPage, pmk.endPage)}">
+                <a class="page-num"  th:href="@{/board/list} + '?pageNum=' + ${number}" th:text="${number}"></a>
               </li>
-              <li class="pagination-item">
-                <a href="#" th:if="${pmk.next}">다음</a>
+              <li class="pagination-item" th:if="${pmk.next}">
+                <a th:href="@{/board/list} + '?pageNum=__${pmk.endPage + 1}__'" >다음</a>
               </li>
             </ul>
           </nav>
@@ -63,5 +63,6 @@
     </div>
     <div class="col-2"></div>
   </div>
+  <footer th:replace="/fragments/footer :: footer"></footer>
 </body>
 </html>

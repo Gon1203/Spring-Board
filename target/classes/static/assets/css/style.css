@@ -1,0 +1,16 @@
+a.page-num{
+  border: 1px solid gray;
+  text-decoration: none;
+  color: black;
+  margin: 0.3em;
+  padding: 0.3em 0.5em;
+  border-radius: 25%;
+}
+
+li.active a.page-num {
+  background-color: #a1dcff;
+}
+
+.post{
+  border: 1px solid black;
+}
