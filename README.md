@@ -50,3 +50,11 @@
 >
 > 개별 게시글 get view 페이지 생성
 
+- 4월 21일
+> 게시물 개별 페이지 생성
+> 
+> 생성된 게시물에 목록, 수정, 삭제 페이지 연결
+> 
+> BoardController에서 페이지 get, update, delete 요청 url을 @PathVariable에서 @RequestParam으로 교체
+> > ex) board/delete/{bno} => board/delete?bno={bno}
+
