@@ -39,7 +39,7 @@
 	
 	<update id="updateBoard">
 		update board 
-		set title = #{title}, content = #{content}, writer = #{writer}, updatedate = #{updateDate}
+		set title = #{title}, content = #{content}, writer = #{writer}, updatedate = now()
 		where bno = #{bno}
 	</update>
 	

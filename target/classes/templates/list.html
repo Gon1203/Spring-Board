@@ -14,12 +14,11 @@
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">no</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">title</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">writer</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">등록일</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">수정일</th>
-                <th class="text-secondary opacity-7">기 타</th>
+                <th style="width: 10%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">no</th>
+                <th style="width: 40%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">title</th>
+                <th style="width: 10%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">writer</th>
+                <th style="width: 20%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">등록일</th>
+                <th style="width: 20%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">수정일</th>
               </tr>
             </thead>
             <tbody>
@@ -28,7 +27,9 @@
                   <span class="text-secondary text-xs" th:text="${board.bno}"></span>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-xs" th:text="${board.title}"></span>
+                  <a th:href="@{/board/get?bno=} + ${board.bno}">
+                    <span class="text-secondary text-xs" th:text="${board.title}"></span>
+                  </a>
                 </td>
                 <td class="align-middle text-center">
                   <span class="text-secondary text-xs" th:text="${board.writer}"></span>

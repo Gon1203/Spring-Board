@@ -6,7 +6,7 @@
   <title>홈페이지</title>
 </head>
 <body>
-  <form th:action="@{'/board/edit/' + ${bno}}" method="post" th:object="${board}">
+  <form th:action="@{'/board/edit?bno=' + ${board.bno}}" method="post" th:object="${board}">
     <div>
       <label for="">제목</label>
       <input type="text" th:field="*{title}" required value="${title}"/>
