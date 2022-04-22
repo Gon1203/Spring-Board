@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>홈페이지</title>
-</head>
-<body>
-  <form th:action="@{'/board/edit?bno=' + ${board.bno}}" method="post" th:object="${board}">
-    <div>
-      <label for="">제목</label>
-      <input type="text" th:field="*{title}" required value="${title}"/>
+  <head th:replace="/fragments/head :: fragment-head">
+  
+  </head>
+  <body>
+    <div th:replace="/fragments/nav :: header"></div>
+    <div class="contatiner row justify-content-center">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="post">
+          <form class="form" th:action="@{'/board/edit?bno=' + ${board.bno}}" method="post" th:object="${board}">
+            <div>
+              <label for="" class="form-lable">제목</label>
+              <input class="form-control" type="text" th:field="*{title}" required value="${board.title}"/>
+            </div>
+            <div>
+              <label for="" class="form-lable">내용</label>
+              <textarea class="form-control" th:field="*{content}" cols="30" rows="5" placeholder="내용을 입력해 주세요" spellcheck="false" required th:text="${board.content}">
+              </textarea>
+            </div>
+            <div>
+              <label for="" class="form-lable">작성자</label>
+              <input class="form-control" type="text" th:field="*{writer}" required value="${board.writer}" />
+            </div>
+            <button class="btn btn-success mt-2" type="submit">등록</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div>
-      <label for="">내용</label>
-      <textarea th:field="*{content}" cols="30" rows="5" placeholder="내용을 입력해 주세요" spellcheck="false" th:text="${content}" required></textarea>
-    </div>
-    <div>
-      <label for="">작성자</label>
-      <input type="text" th:field="*{writer}" vaule="${writer}" required/>
-    </div>
-    <button type="submit">수정</button>
-  </form>
-</body>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+  </body>
 </html>

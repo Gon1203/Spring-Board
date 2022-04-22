@@ -13,4 +13,17 @@ li.active a.page-num {
 
 .post{
   border: 1px solid black;
+  padding: 3.5em;
+  border-radius: 3%;
+}
+.content{
+  border: 1px solid black;
+}
+
+.pageButton {
+  border: 1px solid gray;
+  text-decoration: none;
+  border-radius: 25%;
+  padding: 3px;
+  color: black;
 }

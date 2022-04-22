@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myapp.board.mapper.ReplyMapper">
+
+	<select id="enrollReply" resultType="Reply">
+		insert into reply(content, writer)
+		values(#{content}, #{writer})
+	</select>
+	
+	<select id="replyList" resultType="Reply">
+		select * from reply where bno = #{bno}
+	</select>
+	
+	<delete id="deleteByReplyNo">
+		delete from reply where reply_no = #{reply_no}
+	</delete>
+	
+	<update id="updateReply">
+		update reply 
+		set content = #{content}, writer = #{writer}, updated_at = now()
+		where reply_no = #{reply_no}
+	</update>
+	
+	
+</mapper>

@@ -27,7 +27,7 @@
                   <span class="text-secondary text-xs" th:text="${board.bno}"></span>
                 </td>
                 <td class="align-middle text-center">
-                  <a th:href="@{/board/get?bno=} + ${board.bno}">
+                  <a style="text-decoration: none;" th:href="@{/board/get?bno=} + ${board.bno}">
                     <span class="text-secondary text-xs" th:text="${board.title}"></span>
                   </a>
                 </td>
@@ -49,13 +49,13 @@
           <nav class="pagination-nav" th:if="${pmk.endPage > 0}">
             <ul class="pagination justify-content-center mt-3 pagination-primary">
               <li class="pagination-item" th:if="${pmk.prev}">
-                <a th:href="@{/board/list} + '?pageNum=__${pmk.startPage - 1}__'">이전</a>
+                <a class="pageButton" th:href="@{/board/list} + '?pageNum=__${pmk.startPage - 1}__'">이전</a>
               </li>
               <li class="page-item" th:classappend="${pmk.cri.pageNum == number} ? 'active' : ''" th:each="number : ${#numbers.sequence(pmk.startPage, pmk.endPage)}">
                 <a class="page-num"  th:href="@{/board/list} + '?pageNum=' + ${number}" th:text="${number}"></a>
               </li>
               <li class="pagination-item" th:if="${pmk.next}">
-                <a th:href="@{/board/list} + '?pageNum=__${pmk.endPage + 1}__'" >다음</a>
+                <a class="pageButton" th:href="@{/board/list} + '?pageNum=__${pmk.endPage + 1}__'" >다음</a>
               </li>
             </ul>
           </nav>
