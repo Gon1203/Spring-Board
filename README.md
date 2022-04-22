@@ -58,3 +58,9 @@
 > BoardController에서 페이지 get, update, delete 요청 url을 @PathVariable에서 @RequestParam으로 교체
 > > ex) board/delete/{bno} => board/delete?bno={bno}
 
+- 4월 22일
+> 게시판 댓글 기능 추가(미완성) => 비동기 AJAX 방식
+> 
+> mapper, service, view(html) 작성
+> 
+> view에 AJAX js 설정 필요
