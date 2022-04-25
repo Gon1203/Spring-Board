@@ -66,7 +66,7 @@
                     <input type="text" class="form-control" id="writer" required />
                   </div>
                   <div class="text-center">
-                    <button id="reply-btn" class="btn btn-primary w-100 mb-0">댓글달기</button>
+                    <button type="submit" id="reply-btn" class="btn btn-primary w-100 mb-0">댓글달기</button>
                   </div>
                 </div>
                 <div class="col-9">
@@ -94,11 +94,13 @@
       <div class="col-2"></div>
     </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
-
+    <script th:src="@{/assets/js/Fetch-API.js}"></script>
     <script>
       // 페이지 삭제를 위한 변수 선언
       const deleteButton = document.querySelector('.deleteButton');
       const pageBno = '[[${board.bno}]]';
+
+      const http = new EasyHTTP();
 
       // 게시글 삭제 버튼 클릭 이벤트
       deleteButton.addEventListener('click', function(){
@@ -110,9 +112,66 @@
 
       const replyButton = document.getElementById("reply-btn");
 
-      replyButton.addEventListener('click', function(){
-        alert("버튼을 클릭 했습니다.");
+      replyButton.addEventListener('click', function(e){
+        e.preventDefault();
+        // alert("버튼을 클릭 했습니다.");
+        const data = {
+          reply_bno: '[[${board.bno}]]',
+          writer: document.getElementById('writer').value,
+          content: document.getElementById('content').value
+        };
+        http
+          .post("/reply", data)
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
+
+        // 페이지 새로고침 => 리스트를 다시 불러옴 (DOMContentLoaded)
+        location.reload();
       });
+
+      // 댓글 리스트 추가 함수
+      function getReplyListView(items){
+        const replyList = document.getElementById('reply-list');
+        let lis = '';
+
+        items.forEach(function(item){
+          let writer = item.writer;
+          let content = item.content;
+          let updateTime = item.updated_at;
+          let id = item.reply_no;
+          
+          let li = `<li>
+                    <div>${writer} (${updateTime})</div>
+                    <p>${content}</p>
+                    <textarea class="w-100" style="display:none">${content}</textarea>
+                    <div>
+                      <button type="button" onclick="updateReply(this);" data-id="${id}" class="btn btn-primary">수정</button> 
+                      <button type="button" onclick="deleteReply(this);" data-id="${id}" class="btn btn-warning">삭제</button> 
+                    </div>
+                    </li>`;
+
+          lis += li;
+        });
+        console.log(items);
+
+        replyList.innerHTML = lis;
+      }
+
+      // 댓글 수정 (updateReply)
+      function updateReply(el){
+        
+      }
+
+
+      //html 문서 준비되면 실행하기 이벤트
+      document.addEventListener('DOMContentLoaded', function () {
+        //console.log('준비됨');
+        http
+          .get('/reply/' + '[[${board.bno}]]')
+          .then((res) => getReplyListView(res))
+          .catch((err) => console.log(err));
+      });
+
 
     </script>
 </body>

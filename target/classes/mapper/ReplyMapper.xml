@@ -6,12 +6,12 @@
 <mapper namespace="com.myapp.board.mapper.ReplyMapper">
 
 	<select id="enrollReply" resultType="Reply">
-		insert into reply(content, writer)
-		values(#{content}, #{writer})
+		insert into reply(reply_bno, content, writer)
+		values(#{reply_bno}, #{content}, #{writer})
 	</select>
 	
 	<select id="replyList" resultType="Reply">
-		select * from reply where bno = #{bno}
+		select * from reply where reply_bno = #{bno}
 	</select>
 	
 	<delete id="deleteByReplyNo">
