@@ -64,3 +64,10 @@
 > mapper, service, view(html) 작성
 > 
 > view에 AJAX js 설정 필요
+
+- 4월 25일
+> ReplyController (RestController)
+>
+> 댓글 ajax get, post로 작성, 리스트 받아기 완성
+> 
+> delete, update(put) 작성중
