@@ -20,7 +20,7 @@
 	
 	<update id="updateReply">
 		update reply 
-		set content = #{content}, writer = #{writer}, updated_at = now()
+		set content = #{content}, updated_at = now()
 		where reply_no = #{reply_no}
 	</update>
 	

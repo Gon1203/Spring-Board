@@ -59,24 +59,26 @@
         <div class="row reply">
           <div class="col-md-10 me-auto ms-auto">
             <div class="card card-body">
-              <div class="row">
-                <div class="col-3">
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">글쓴이</label>
-                    <input type="text" class="form-control" id="writer" required />
+              <form action="POST" onsubmit="validReply(this)">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="input-group input-group-outline mb-3">
+                      <label class="form-label">글쓴이</label>
+                      <input type="text" name="writer" class="form-control" id="writer" required />
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" id="reply-btn" class="btn btn-primary w-100 mb-0">댓글달기</button>
+                    </div>
                   </div>
-                  <div class="text-center">
-                    <button type="submit" id="reply-btn" class="btn btn-primary w-100 mb-0">댓글달기</button>
-                  </div>
-                </div>
-                <div class="col-9">
-                  <div class="input-group input-group-outline mb-0">
-                    <div class="input-group input-group-dynamic">
-                      <textarea id="content" class="form-control" rows="4" placeholder="댓글 내용을 적어주세요." required></textarea>
+                  <div class="col-9">
+                    <div class="input-group input-group-outline mb-0">
+                      <div class="input-group input-group-dynamic">
+                        <textarea id="content" name="content" class="form-control" rows="4" placeholder="댓글 내용을 적어주세요." required maxlength="300"></textarea>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -112,8 +114,25 @@
 
       const replyButton = document.getElementById("reply-btn");
 
+      // 댓글 검증 (작성자, 내용)
+      function validReply(form){
+        if(this.writer.value == ''){
+          alert('이름을 입력해 주세요')
+          return false;
+        } else if(this.content.value == '' || this.content.value.length > 300) {
+          alert('내용은 1자 이상 300자 이하 입니다.')
+          return false;
+        }
+
+        return true;
+      }
+
+      // 댓글 등록 버튼
       replyButton.addEventListener('click', function(e){
         e.preventDefault();
+        if(!validReply(e.form)){
+          return;
+        }
         // alert("버튼을 클릭 했습니다.");
         const data = {
           reply_bno: '[[${board.bno}]]',
@@ -140,26 +159,86 @@
           let updateTime = item.updated_at;
           let id = item.reply_no;
           
+          // 추가되는 댓글 li
           let li = `<li>
-                    <div>${writer} (${updateTime})</div>
-                    <p>${content}</p>
-                    <textarea class="w-100" style="display:none">${content}</textarea>
-                    <div>
-                      <button type="button" onclick="updateReply(this);" data-id="${id}" class="btn btn-primary">수정</button> 
-                      <button type="button" onclick="deleteReply(this);" data-id="${id}" class="btn btn-warning">삭제</button> 
-                    </div>
+                      <div>${writer} (${updateTime})</div>
+                      <p>${content}</p>
+                      <textarea class="w-100" style="display:none">${content}</textarea>
+                      <div>
+                        <button type="button" onclick="updateReply(this);" data-id="${id}" class="btn btn-primary">수정</button> 
+                        <button type="button" onclick="deleteReply(this);" data-id="${id}" class="btn btn-warning">삭제</button> 
+                      </div>
                     </li>`;
 
           lis += li;
         });
-        console.log(items);
 
         replyList.innerHTML = lis;
       }
 
       // 댓글 수정 (updateReply)
       function updateReply(el){
+
+
+        // 버튼에 설정된 data-id
+        const id = el.dataset.id;
+
+        // 버튼의 부모 태그 기준 이전 element를 선택
+        const update = el.parentElement.previousElementSibling;
+        // 버튼의 부모 태그 기준 이전의 이전 element를 선택
+        const content = el.parentElement.previousElementSibling.previousElementSibling;
+        // 버튼 기준 다음 element
+        const deleteButton = el.nextElementSibling;
+
+        // 수정 버튼 클릭 시
+        if(el.textContent == '수정'){
+
+          // console.log(update);
+          content.style.display = 'none';
+          update.style.display = 'block';
+          deleteButton.style.visibility = 'hidden';
+          el.textContent = '수정완료';
+        } else {
+          if(update.value == '' || update.value.length > 300){
+            alert('내용은 1자 이상 300자 이하 입니다.')
+            return;
+          }
+
+          // ajax 통신 data 설정
+          data = {
+            reply_no : id,
+            content : update.value
+          }
+          
+          // ajax put
+          http
+            .put('/reply', data)
+            .then((res) => content.textContent = res.content) // 수정 후 댓글 내용 수정
+            .catch((err) => console.log(err));
+          
+          content.style.display = 'block';
+          update.style.display = 'none';
+          deleteButton.style.visibility = 'visible';
+          el.textContent = '수정';
+        }
         
+
+        // data = {
+        //   reply_no: id
+        // }
+      }
+
+      // 댓글 삭제 (deleteReply)
+      function deleteReply(el){
+        // button에 포함된 data-id에서 id를 가져옴
+        const id = el.dataset.id;
+
+        http
+          .delete("/reply/" + id)
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
+
+          location.reload();
       }
 
 
