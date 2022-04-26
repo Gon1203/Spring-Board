@@ -71,3 +71,11 @@
 > 댓글 ajax get, post로 작성, 리스트 받아기 완성
 > 
 > delete, update(put) 작성중
+
+- 4월 26일
+> 댓글 수정, 삭제 완성
+>
+> 회원(User) 테이블, model, mapper, controller 생성
+>
+> 회원가입 뷰, controller 완성 (로그인은 뷰 페이지만 생성)
+> 
