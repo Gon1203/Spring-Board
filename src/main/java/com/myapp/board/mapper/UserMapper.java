@@ -19,7 +19,7 @@ import com.myapp.board.model.User;
 public interface UserMapper {
 	
 	// 유저 등록
-	@Insert("insert into user values(#{email}, #{name}, #{password})")
+	@Insert("insert into user values(#{email}, #{password}, #{name})")
 	public int insertUser(User user);
 	
 	// 유저 조회
