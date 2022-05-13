@@ -4,15 +4,15 @@
   </head>
   <body>
     <div th:replace="/fragments/nav :: header"></div>
-      <div class="contatiner row justify-content-center">
-      <div class="col-2"></div>
+      <div class="container row justify-content-center">
+      <div class="col-2" th:replace="/fragments/sidebar :: sidebar"></div>
       <div class="col-8">
         <!-- 게시물 시작 -->
         <div class="content row">
           <table>
-            <thead style="background-color: darkslategray; color: white; height: 4em; border-bottom: 1px solid black;">
+            <thead class="bg-dark" style="color: white; height: 4em; border-bottom: 1px solid black;">
               <tr>
-                <th scope="col" style="width: 50%;">
+                <th scope="col" style="width: 50%; padding: 10px;">
                   <label for="">제 목 : </label>
                   <span th:text="${board.title}"></span>
                 </th>
@@ -44,6 +44,7 @@
               <tfoot>
                 <tr>
                   <td>
+                    <hr>
                     <div class="m-2">
                       <a th:href="@{/board/list}" class="btn btn-primary">목 록</a>
                       <a th:href="@{/board/edit?bno=} + ${board.bno}" class="btn btn-success">수 정</a>
@@ -56,15 +57,14 @@
           </table>
         </div>
         <!-- 게시물 끝 / 댓글 작성 시작 -->
-        <div class="row reply">
+        <div class="row reply mt-3">
           <div class="col-md-10 me-auto ms-auto">
             <div class="card card-body">
               <form action="POST" onsubmit="validReply(this)">
                 <div class="row">
                   <div class="col-3">
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">글쓴이</label>
-                      <input type="text" name="writer" class="form-control" id="writer" required />
+                      <input type="text" name="writer" class="form-control" id="writer" th:value="${userName}" readonly required />
                     </div>
                     <div class="text-center">
                       <button type="submit" id="reply-btn" class="btn btn-primary w-100 mb-0">댓글달기</button>
@@ -93,7 +93,6 @@
           </div>
         </div>
       </div>
-      <div class="col-2"></div>
     </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
     <script th:src="@{/assets/js/Fetch-API.js}"></script>
@@ -102,15 +101,24 @@
       const deleteButton = document.querySelector('.deleteButton');
       const pageBno = '[[${board.bno}]]';
 
-      const http = new EasyHTTP();
+      const boardWriter = '[[${board.writer}]]';
 
-      // 게시글 삭제 버튼 클릭 이벤트
+      const userName = '[[${userName}]]';
+
       deleteButton.addEventListener('click', function(){
-        console.log('click')
-        if(confirm("게시물을 삭제 하시겠습니까?")){
-          location.href = "/board/delete?bno=" + pageBno;
+      if(userName != boardWriter){
+        alert("작성자만 삭제할수 있습니다.")
+      } else {
+        // 게시글 삭제 버튼 클릭 이벤트
+          console.log('click')
+          if(confirm("게시물을 삭제 하시겠습니까?")){
+            location.href = "/board/delete?bno=" + pageBno;
+          }
         }
       });
+
+      const http = new EasyHTTP();
+
 
       const replyButton = document.getElementById("reply-btn");
 
@@ -160,7 +168,7 @@
           let id = item.reply_no;
           
           // 추가되는 댓글 li
-          let li = `<li>
+          let li = `<li class="list-group-item">
                       <div>${writer} (${updateTime})</div>
                       <p>${content}</p>
                       <textarea class="w-100" style="display:none">${content}</textarea>

@@ -68,7 +68,7 @@ public class BoardController {
 	// 게시물 삭제(bno)
 	@GetMapping("/delete")
 	public String boardDelete(@RequestParam("bno") int bno) {
-		
+	
 		boardService.deleteByBno(bno);
 		
 		return "redirect:/board/list";

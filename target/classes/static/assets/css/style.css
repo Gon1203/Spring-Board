@@ -1,3 +1,12 @@
+
+html, body{
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
 a.page-num{
   border: 1px solid gray;
   text-decoration: none;
@@ -26,4 +35,13 @@ li.active a.page-num {
   border-radius: 25%;
   padding: 3px;
   color: black;
+}
+
+.loginBox, .registerBox {
+  border: 1px solid black;
+  border-radius: 11%;
+  width: 50%;
+  height: fit-content;
+  padding: 3em;
+  margin: 5em;
 }
