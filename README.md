@@ -96,6 +96,15 @@
 > 커스텀 로그인 페이지로 로그인 인증
 > 
  
+ - 5월 13일
+> side nav 추가
+> 
+> 로그인 성공시 Spring security Principal에 저장된 userName을 Common으로 모든 페이지에 전달
+>
+> 게시물 수정, 삭제 시 userName일치 여부 판단
+>
+> 전체적 css 수정
+> 
 </details>
 
 
