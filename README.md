@@ -118,4 +118,25 @@
 > 삭제 후 게시물 리스트로 다시 이동하면 이동 후 에러 발생 (push X)
 </details>
 
+## 구동 화면
+<details>
+  <summary>구동 화면 펼쳐보기!</summary>
+ ### 메인 화면
+ ![localhost_8080_](https://user-images.githubusercontent.com/89332185/168750971-92ce12e6-6fec-453a-b922-0e53c78e3e85.png)
+ 
+ ### 로그인 화면
+![localhost_8080_login](https://user-images.githubusercontent.com/89332185/168751105-d7927e01-ebf8-4026-8bc8-976ffeb857b4.png) 
+ 
+ ### 게시판 리스트
+ ![localhost_8080_board_list](https://user-images.githubusercontent.com/89332185/168751398-363616f6-104a-483b-81d7-2d8e8ec00aaf.png)
+ 
+ ### 게시물 등록
+ ![localhost_8080_board_enroll](https://user-images.githubusercontent.com/89332185/168751507-cc44c7aa-e269-4a9e-9bb8-7f51bd354f44.png)
+
+ ### 댓글 등록 / 리스트
+ ![localhost_8080_board_111 (1)](https://user-images.githubusercontent.com/89332185/168751853-18a2745d-dbaf-415e-acc5-97fa9b3520d0.png)
+
+
+</details>
+
 
