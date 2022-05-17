@@ -20,7 +20,7 @@
 
 ## 업데이트
 <details>
-  <summary>업데이트 내역 펼쳐보기!</summary>
+  <span style="color:yellow"><summary>업데이트 내역 펼쳐보기!</summary><span>
  
 - 4월 14일
 > 프로젝트 세팅, 생성
