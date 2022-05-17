@@ -105,6 +105,13 @@
 >
 > 전체적 css 수정
 > 
+ 
+ - 5월 17일
+> 게시물 delete 방식을 getMapping에서 deleteMapping으로 변경
+> 
+> 삭제는 정상적으로 이루어 짐
+>
+> 삭제 후 게시물 리스트로 다시 이동하면 이동 후 에러 발생 (push X)
 </details>
 
 
