@@ -47,8 +47,8 @@
                     <hr>
                     <div class="m-2">
                       <a th:href="@{/board/list}" class="btn btn-primary">목 록</a>
-                      <a th:href="@{/board/edit?bno=} + ${board.bno}" class="btn btn-success">수 정</a>
-                      <button class="btn btn-danger deleteButton">삭 제</button>
+                      <a th:href="@{/board/enroll/} + ${board.bno}" class="btn btn-success">수 정</a>
+                      <button type="button" class="btn btn-danger deleteButton">삭 제</button>
                     </div>
                   </td>
                 </tr>
@@ -98,7 +98,10 @@
     <script th:src="@{/assets/js/Fetch-API.js}"></script>
     <script>
       // 페이지 삭제를 위한 변수 선언
+      const http = new EasyHTTP();
+
       const deleteButton = document.querySelector('.deleteButton');
+
       const pageBno = '[[${board.bno}]]';
 
       const boardWriter = '[[${board.writer}]]';
@@ -110,15 +113,17 @@
         alert("작성자만 삭제할수 있습니다.")
       } else {
         // 게시글 삭제 버튼 클릭 이벤트
-          console.log('click')
           if(confirm("게시물을 삭제 하시겠습니까?")){
-            location.href = "/board/delete?bno=" + pageBno;
+            // location.href = "/board/delete?bno=" + pageBno;
+
+            http
+            .delete("/board/"+pageBno)
+            .then(location.href = "/")
+            .catch((err) => console.log(err));
+
           }
         }
       });
-
-      const http = new EasyHTTP();
-
 
       const replyButton = document.getElementById("reply-btn");
 
@@ -258,6 +263,8 @@
           .then((res) => getReplyListView(res))
           .catch((err) => console.log(err));
       });
+
+
 
 
     </script>

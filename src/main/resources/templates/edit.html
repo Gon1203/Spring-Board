@@ -9,7 +9,7 @@
       <div class="col-2"></div>
       <div class="col-8">
         <div class="post">
-          <form class="form" th:action="@{'/board/edit?bno=' + ${board.bno}}" method="post" th:object="${board}">
+          <form class="form" th:action="@{/board/enroll/} + ${board.bno}" th:method="PUT" th:object="${board}">
             <div>
               <label for="" class="form-lable">제목</label>
               <input class="form-control" type="text" th:field="*{title}" required value="${board.title}"/>
@@ -21,7 +21,7 @@
             </div>
             <div>
               <label for="" class="form-lable">작성자</label>
-              <input class="form-control" type="text" th:field="*{writer}" required value="${board.writer}" />
+              <input class="form-control" type="text" th:field="*{writer}" readonly required value="${board.writer}" />
             </div>
             <button class="btn btn-success mt-2" type="submit">등록</button>
           </form>

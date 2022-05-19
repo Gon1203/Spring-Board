@@ -2,10 +2,12 @@ package com.myapp.board.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myapp.board.model.Board;
 import com.myapp.board.model.Criteria;
@@ -13,7 +15,7 @@ import com.myapp.board.model.PageMakerDTO;
 import com.myapp.board.service.BoardService;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/board/")
 public class BoardController {
 	
 	// boardService 연결
@@ -25,7 +27,7 @@ public class BoardController {
 	
 	
 	// 게시물 목록 가져오기(페이징 처리)
-	@GetMapping("/list")
+	@GetMapping("list")
 	public String boardList(Criteria cri, Model model) {
 		
 		model.addAttribute("boards", boardService.pagingList(cri));
@@ -39,8 +41,8 @@ public class BoardController {
 		return "list";
 	}
 	
-	@GetMapping("/get")
-	public String getBoard(@RequestParam("bno") int bno, Model model) {
+	@GetMapping("{bno}")
+	public String getBoard(@PathVariable("bno") int bno, Model model) {
 		
 		model.addAttribute("board", boardService.getBoardByBno(bno));
 		
@@ -48,7 +50,7 @@ public class BoardController {
 	}
 	
 	// 게시물 등록 뷰 호출
-	@GetMapping("/enroll")
+	@GetMapping("enroll")
 	public String boardEnrollGet(Model model) {
 		
 		model.addAttribute("board", new Board());
@@ -57,7 +59,7 @@ public class BoardController {
 	}
 
 	// 게시물 등록 post
-	@PostMapping("/enroll")
+	@PostMapping("enroll")
 	public String boardEnrollPost(Board board) {
 		
 		boardService.enroll(board);
@@ -66,17 +68,18 @@ public class BoardController {
 	}
 	
 	// 게시물 삭제(bno)
-	@GetMapping("/delete")
-	public String boardDelete(@RequestParam("bno") int bno) {
+	@DeleteMapping("{bno}")
+	public void boardDelete (@PathVariable("bno") int bno) throws Exception {
 	
 		boardService.deleteByBno(bno);
 		
-		return "redirect:/board/list";
+//		return "redirect:/";
+		
 	}
 	
 	// 게시물 수정 get
-	@GetMapping("/edit")
-	public String boardEdit(@RequestParam("bno") int bno, Model model) {
+	@GetMapping("/enroll/{bno}")
+	public String boardEdit(@PathVariable("bno") int bno, Model model) {
 		
 		
 		Board board = boardService.getBoardByBno(bno);
@@ -86,9 +89,9 @@ public class BoardController {
 		return "edit";
 	}
 	
-	// 게시물 수정 post
-	@PostMapping("/edit")
-	public String boardEditPost(Board board) {
+	// 게시물 수정 put
+	@PutMapping("/edit/{bno}")
+	public String boardEditPost(@PathVariable("bno") int bno , Board board) {
 		
 		boardService.updateBoard(board);
 		

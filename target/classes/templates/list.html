@@ -27,7 +27,7 @@
                   <span class="text-secondary text-xs" th:text="${board.bno}"></span>
                 </td>
                 <td class="align-middle text-center">
-                  <a style="text-decoration: none;" th:href="@{/board/get?bno=} + ${board.bno}">
+                  <a style="text-decoration: none;" th:href="@{/board/} + ${board.bno}">
                     <span class="text-secondary text-xs" th:text="${board.title}"></span>
                   </a>
                 </td>
