@@ -1,21 +1,26 @@
 <div th:fragment="header">
-  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <header class="d-flex flex-wrap justify-content-center py-3 bg-dark">
     <script th:if="${message}">
       let m = '[[${message}]]'; // redirect로 넘어온 메세지 저장
       alert(m);
 
     </script>
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">🟢 Simple Board </span>
-    </a>
+    <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+      <a href="/" class="text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">🟢 Simple Board </span>
+      </a>
+      <a th:href="@{/board/list}" class="ms-3 text-white text-decoration-none">
+        <span>게시판</span>
+      </a>
+    </div>
 
     <ul class="nav nav-pills">
       <li class="nav-item" th:if="${userName == null}"><a th:href="@{/login}" class="nav-link">로그인</a></li>
       <li class="nav-item" th:if="${userName == null}"><a th:href="@{/register}" class="nav-link">회원가입</a></li>
-      <li class="nav-item" th:if="${userName != null}">
+      <li class="nav-item me-2" th:if="${userName != null}">
         <form th:action="@{/logout}" method="get">
-          <span th:text="${' 😃 Hi, '+userName}"></span>
+          <span th:text="${' 😃 Hi, '+userName}" class="text-white"></span>
           <button class="btn btn-sm btn-danger ms-3 ">로그아웃</button>
         </form>
       </li>

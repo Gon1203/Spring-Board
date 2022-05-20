@@ -4,26 +4,28 @@
   </head>
   <body>
     <div th:replace="/fragments/nav :: header"></div>
-      <div class="container row justify-content-center">
-      <div class="col-2" th:replace="/fragments/sidebar :: sidebar"></div>
-      <div class="col-8 d-flex justify-content-center">
-        <h2>Register</h2>
-        <div class="registerBox">
-          <p class="mb-0" th:text="${message} ?: '가입양식을 작성해주세요'"></p>
-          <form class="form" th:action="@{/register}" method="post" th:object="${user}">
-            <label for="email" class="mt-3">이메일</label>
-            <input type="email" name="email" id="email" class="form-control" th:field="*{email}" placeholder="Email" required>
-  
-            <label for="name" class="mt-3">이름</label>
-            <input type="text" name="name" id="name" class="form-control" th:field="*{name}" placeholder="Name" requeired>
-  
-            <label for="password" class="mt-3">비밀번호</label>
-            <input type="password" name="password" id="password" class="form-control" th:field="*{password}" required>
-  
-            <button type="submit" class="mt-2 btn btn-primary">등록하기</button>
-          </form>
+    <div class="container">
+      <div class="row justify-content-center" style="height: 100%;">
+        <div class="col-8 d-flex justify-content-center">
+          <h2>Register</h2>
+          <div class="registerBox">
+            <p class="mb-0" th:text="${message} ?: '가입양식을 작성해주세요'"></p>
+            <form class="form" th:action="@{/register}" method="post" th:object="${user}">
+              <label for="email" class="mt-3">이메일</label>
+              <input type="email" name="email" id="email" class="form-control" th:field="*{email}" placeholder="Email" required>
+    
+              <label for="name" class="mt-3">이름</label>
+              <input type="text" name="name" id="name" class="form-control" th:field="*{name}" placeholder="Name" requeired>
+    
+              <label for="password" class="mt-3">비밀번호</label>
+              <input type="password" name="password" id="password" class="form-control" th:field="*{password}" required>
+    
+              <button type="submit" class="mt-2 btn btn-primary">등록하기</button>
+            </form>
         </div>
       </div>
+    </div>
+
     </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
 </body>

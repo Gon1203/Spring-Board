@@ -5,64 +5,64 @@
 </head>
 <body>
   <div th:replace="/fragments/nav :: header"></div>
-  <div class="container row justify-content-center">
-    <div class="col-2" th:replace="/fragments/sidebar :: sidebar"></div>
-    <div class="col-8">
-      <h2>List page</h2>
-      <div class="card">
-        <div class="table-responsive">
-          <table class="table align-items-center mb-0">
-            <thead>
-              <tr>
-                <th style="width: 10%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">no</th>
-                <th style="width: 40%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">title</th>
-                <th style="width: 10%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">writer</th>
-                <th style="width: 20%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">등록일</th>
-                <th style="width: 20%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">수정일</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each=" board  : ${ boards }">
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs" th:text="${board.bno}"></span>
-                </td>
-                <td class="align-middle text-center">
-                  <a style="text-decoration: none;" th:href="@{/board/} + ${board.bno}">
-                    <span class="text-secondary text-xs" th:text="${board.title}"></span>
-                  </a>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs" th:text="${board.writer}"></span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs" th:text="${#temporals.format(board.regDate , 'yyyy-MM-dd a hh:mm:ss')}"></span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs" th:text="${#temporals.format(board.updateDate, 'yyyy-MM-dd a hh:mm:ss')}"></span>
-                </td>
-                <td class="align-middle">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <a th:href="@{/board/enroll}" class="btn btn-sm btn-success m-3">등록하기</a>
-          <nav class="pagination-nav" th:if="${pmk.endPage > 0}">
-            <ul class="pagination justify-content-center mt-3 pagination-primary">
-              <li class="pagination-item" th:if="${pmk.prev}">
-                <a class="pageButton" th:href="@{/board/list} + '?pageNum=__${pmk.startPage - 1}__'">이전</a>
-              </li>
-              <li class="page-item" th:classappend="${pmk.cri.pageNum == number} ? 'active' : ''" th:each="number : ${#numbers.sequence(pmk.startPage, pmk.endPage)}">
-                <a class="page-num"  th:href="@{/board/list} + '?pageNum=' + ${number}" th:text="${number}"></a>
-              </li>
-              <li class="pagination-item" th:if="${pmk.next}">
-                <a class="pageButton" th:href="@{/board/list} + '?pageNum=__${pmk.endPage + 1}__'" >다음</a>
-              </li>
-            </ul>
-          </nav>
+  <div class="container">
+    <div class="row justify-content-center" style="height: 100%;">
+      <div class="col-10">
+        <h2>List page</h2>
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 10%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">no</th>
+                  <th style="width: 40%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">title</th>
+                  <th style="width: 10%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">writer</th>
+                  <th style="width: 20%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">등록일</th>
+                  <th style="width: 20%;" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">수정일</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each=" board  : ${ boards }">
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs" th:text="${board.bno}"></span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <a style="text-decoration: none;" th:href="@{/board/} + ${board.bno}">
+                      <span class="text-secondary text-xs" th:text="${board.title}"></span>
+                    </a>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs" th:text="${board.writer}"></span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs" th:text="${#temporals.format(board.regDate , 'yyyy-MM-dd a hh:mm:ss')}"></span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs" th:text="${#temporals.format(board.updateDate, 'yyyy-MM-dd a hh:mm:ss')}"></span>
+                  </td>
+                  <td class="align-middle">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <a th:href="@{/board/enroll}" class="btn btn-sm btn-success m-3">등록하기</a>
+            <nav class="pagination-nav" th:if="${pmk.endPage > 0}">
+              <ul class="pagination justify-content-center mt-3 pagination-primary">
+                <li class="pagination-item" th:if="${pmk.prev}">
+                  <a class="pageButton" th:href="@{/board/list} + '?pageNum=__${pmk.startPage - 1}__'">이전</a>
+                </li>
+                <li class="page-item" th:classappend="${pmk.cri.pageNum == number} ? 'active' : ''" th:each="number : ${#numbers.sequence(pmk.startPage, pmk.endPage)}">
+                  <a class="page-num"  th:href="@{/board/list} + '?pageNum=' + ${number}" th:text="${number}"></a>
+                </li>
+                <li class="pagination-item" th:if="${pmk.next}">
+                  <a class="pageButton" th:href="@{/board/list} + '?pageNum=__${pmk.endPage + 1}__'" >다음</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-2"></div>
   </div>
   <footer th:replace="/fragments/footer :: footer"></footer>
 </body>
