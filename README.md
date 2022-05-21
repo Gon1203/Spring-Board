@@ -16,6 +16,25 @@
   - Lombok
   - Thymeleaf
 
+ ## 구동화면
+ 
+ - 회원가입
+ ![무제 001](https://user-images.githubusercontent.com/89332185/169638043-34611023-90cf-40c1-a6af-3e7fca5c850d.jpeg)
+ 
+ - 로그인
+ ![무제 002](https://user-images.githubusercontent.com/89332185/169638055-922234fa-f29e-4dd2-9b1f-7adf4a8564d1.jpeg)
+
+ - 게시판
+ ![무제 003](https://user-images.githubusercontent.com/89332185/169638072-99b762f6-a4fd-4276-89b8-7060689da0cc.jpeg)
+ 
+ - 게시물 등록
+ ![무제 004](https://user-images.githubusercontent.com/89332185/169638077-b80f4b91-5b6a-4f87-9779-3cca2e0d80c4.jpeg)
+
+ - 게시물
+ ![무제 005](https://user-images.githubusercontent.com/89332185/169638083-201283fc-4e6d-45eb-8d6a-0682264173b9.jpeg)
+
+
+ 
 ---------------------
 
 ## 업데이트
@@ -121,31 +140,6 @@
  > 삭제 method delete , 수정 method put 으로 변경
  >
  > delete 정상 작동 , 수정은 아직 오류 발생
-</details>
-
-## 구동 화면
-<details>
-  <summary>구동 화면 펼쳐보기!</summary>
- 
- ### 메인 화면
- ![localhost_8080_ (1)](https://user-images.githubusercontent.com/89332185/168752108-ddfbd573-5907-453a-817d-d605abb0a80f.png)
-
- ### 로그인 화면
- ![localhost_8080_login](https://user-images.githubusercontent.com/89332185/168751105-d7927e01-ebf8-4026-8bc8-976ffeb857b4.png) 
- 
- ### 게시판 리스트
- ![localhost_8080_board_list](https://user-images.githubusercontent.com/89332185/168751398-363616f6-104a-483b-81d7-2d8e8ec00aaf.png)
- 
- ### 게시물 등록
- ![localhost_8080_board_enroll](https://user-images.githubusercontent.com/89332185/168751507-cc44c7aa-e269-4a9e-9bb8-7f51bd354f44.png)
- 
- ### 게시물 뷰
- ![localhost_8080_board_138](https://user-images.githubusercontent.com/89332185/168752538-d15a9215-4ed1-44fc-8eed-23c800e716d1.png)
-
- ### 댓글 등록 / 리스트
- ![localhost_8080_board_111 (1)](https://user-images.githubusercontent.com/89332185/168751853-18a2745d-dbaf-415e-acc5-97fa9b3520d0.png)
-
-
 </details>
 
 
