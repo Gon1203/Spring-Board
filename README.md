@@ -139,7 +139,12 @@
  - 5월 19일
  > 삭제 method delete , 수정 method put 으로 변경
  >
- > delete 정상 작동 , 수정은 아직 오류 발생
+ > delete , 수정은 오류 발생
+ 
+ - 5월 23일
+ > 삭제 , 수정 오류 수정 (수정은 URI 오류)
+ >
+ > Delete method 전송방식을 form 제출로 변경하니 오류가 사라짐
 </details>
 
 
