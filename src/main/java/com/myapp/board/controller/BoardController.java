@@ -69,16 +69,16 @@ public class BoardController {
 	
 	// 게시물 삭제(bno)
 	@DeleteMapping("{bno}")
-	public void boardDelete (@PathVariable("bno") int bno) throws Exception {
+	public String boardDelete (@PathVariable("bno") int bno) throws Exception {
 	
 		boardService.deleteByBno(bno);
 		
-//		return "redirect:/";
+		return "redirect:/board/list";
 		
 	}
 	
 	// 게시물 수정 get
-	@GetMapping("/enroll/{bno}")
+	@GetMapping("edit/{bno}")
 	public String boardEdit(@PathVariable("bno") int bno, Model model) {
 		
 		
@@ -90,7 +90,7 @@ public class BoardController {
 	}
 	
 	// 게시물 수정 put
-	@PutMapping("/edit/{bno}")
+	@PutMapping("{bno}")
 	public String boardEditPost(@PathVariable("bno") int bno , Board board) {
 		
 		boardService.updateBoard(board);

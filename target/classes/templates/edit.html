@@ -9,7 +9,9 @@
       <div class="row justify-content-center" style="height: 100%;">
         <div class="col-8">
           <div class="post mt-2">
-            <form class="form" th:action="@{/board/enroll/} + ${board.bno}" th:method="PUT" th:object="${board}">
+            <form class="form" th:action="@{/board/} + ${board.bno}" method="post" th:object="${board}">
+              <input type="hidden" name="_method" value="PUT">
+              <!-- <input type="hidden" name="bno" th:value="${board.bno}"> -->
               <div>
                 <label for="" class="form-lable">제목</label>
                 <input class="form-control" type="text" th:field="*{title}" required value="${board.title}"/>
@@ -23,7 +25,7 @@
                 <label for="" class="form-lable">작성자</label>
                 <input class="form-control" type="text" th:field="*{writer}" readonly required value="${board.writer}" />
               </div>
-              <button class="btn btn-success mt-2" type="submit">등록</button>
+              <button class="btn btn-success mt-2" type="submit">수정</button>
             </form>
           </div>
         </div>

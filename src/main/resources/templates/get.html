@@ -47,8 +47,10 @@
                     <hr>
                     <div class="m-2">
                       <a th:href="@{/board/list}" class="btn btn-primary">목 록</a>
-                      <a th:href="@{/board/enroll/} + ${board.bno}" class="btn btn-success">수 정</a>
-                      <button type="button" class="btn btn-danger deleteButton">삭 제</button>
+                      <a th:href="@{/board/edit/} + ${board.bno}" class="btn btn-success">수 정</a>
+                      <form th:action="@{/board/}+${board.bno}" th:method="delete">
+                        <button type="submit" class="btn btn-danger deleteButton">삭 제</button>
+                      </form>
                     </div>
                   </td>
                 </tr>
@@ -109,22 +111,20 @@
 
       const userName = '[[${userName}]]';
 
+      
       deleteButton.addEventListener('click', function(){
-      if(userName != boardWriter){
-        alert("작성자만 삭제할수 있습니다.")
-      } else {
-        // 게시글 삭제 버튼 클릭 이벤트
-          if(confirm("게시물을 삭제 하시겠습니까?")){
-            // location.href = "/board/delete?bno=" + pageBno;
-
-            http
-            .delete("/board/"+pageBno)
-            .then(location.href = "/")
-            .catch((err) => console.log(err));
-
+        if(userName != boardWriter){
+          alert("작성자만 삭제할수 있습니다.")
+          event.preventDefault();
+        } else {
+          // 게시글 삭제 버튼 클릭 이벤트
+            if(confirm("게시물을 삭제 하시겠습니까?")){
+            }  else {
+              event.preventDefault();
+              return;
+            }
           }
-        }
-      });
+        });
 
       const replyButton = document.getElementById("reply-btn");
 
