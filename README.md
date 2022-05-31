@@ -1,8 +1,16 @@
 # Spring-Board
  스프링 부트 게시판 프로젝트
  
- RESTful API 방식의 게시글 CRUD
+ 게시글 CRUD를 RESTful API 방식으로 설계하여
  
+ GET, POST, PUT, DELETE method를 사용하여 처리 하고
+ 
+ route에 resource, id를 제외한 정보를 제공하지 않음
+ 
+ Spring Security를 통해 회원가입시 사용자 비밀번호 암호화와 페이지 인증, 인가를 처리했음
+ 
+ 댓글 기능은 AJAX 비동기 통신 방식으로 구현
+  
  업데이트 중
  
 ## 스프링 게시판 프로젝트
